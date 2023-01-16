@@ -16,23 +16,23 @@ public class NameCompressor {
 			for (int i = 0; i < names.length; i++) {
 				temp[i] = names[i];
 			}
-			temp[temp.length - 1] = name;
+			temp[temp.length - 1] = name.trim();
 			names = temp;
 
 			if (name.equalsIgnoreCase("ZZZ")) {
 				for (int i = 0; i < name.length(); i++) {
 					String[] splitNames = names[i].split(" ");
-					String lastName = splitNames[0];
+					String lastName = splitNames[splitNames.length - 1];
 					String initials = "";
 
-					for (int j = 1; j < splitNames.length; j++) {
+					for (int j = 0; j < splitNames.length - 1; j++) {
 						initials += splitNames[j].charAt(0) + ". ";
 					}
 					
 					if (initials.equals("")) {
 						System.out.println("%s".formatted(lastName));
 					} else {
-						System.out.println("%s, %s".formatted(lastName, initials));
+						System.out.println("%s, %s".formatted(lastName, initials.toUpperCase()));
 					}
 				}
 				break;
