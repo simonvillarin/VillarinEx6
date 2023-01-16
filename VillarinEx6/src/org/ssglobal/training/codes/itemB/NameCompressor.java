@@ -1,6 +1,7 @@
 package org.ssglobal.training.codes.itemB;
 
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class NameCompressor {
 	private String[] names = new String[0];
@@ -21,7 +22,13 @@ public class NameCompressor {
 
 			if (name.equalsIgnoreCase("ZZZ")) {
 				for (int i = 0; i < name.length(); i++) {
-					String[] splitNames = names[i].split(" ");
+					StringTokenizer tokenizer = new StringTokenizer(names[i], " ");
+					String[] splitNames = new String[tokenizer.countTokens()];
+					
+					for (int j = 0; j < splitNames.length; j++) {
+						splitNames[j] = tokenizer.nextToken();
+					}
+					
 					String lastName = splitNames[splitNames.length - 1];
 					String initials = "";
 
