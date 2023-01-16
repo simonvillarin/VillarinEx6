@@ -5,19 +5,28 @@ import java.util.GregorianCalendar;
 
 public class Season {
 	public String season(int year, int month, int day) {
-		Calendar cal = new GregorianCalendar();
-		cal.set(year, month - 1, day);
+		Calendar cal = new GregorianCalendar(year, month - 1, day);
+		Calendar winterStart = new GregorianCalendar(year, 11, 16);
+		Calendar winterEnd = new GregorianCalendar(year, 2, 15);
+		Calendar springStart = new GregorianCalendar(year, 2, 16);
+		Calendar springEnd = new GregorianCalendar(year, 5, 15);
+		Calendar summerStart = new GregorianCalendar(year, 5, 16);
+		Calendar summerEnd = new GregorianCalendar(year, 8, 15);
+		Calendar fallStart = new GregorianCalendar(year, 8, 16);
+		Calendar fallEnd = new GregorianCalendar(year, 11, 15);
 		
 		String season = "";
 		
-		if ((month == 12 && day >= 16) || (month == 1 && day <= 31) || (month == 2 && day <= 29) || (month == 3 && day <= 15)) {
+		if (cal.after(winterStart) || cal.before(winterEnd)) {
 			season = "Winter";
-		} else if ((month == 3 && day >= 16) || (month == 4 && day <= 30) || (month == 5 && day <= 31) || (month == 6 && day <= 15)) {
+		} else if (cal.after(springStart) && cal.before(springEnd)) {
 			season = "Spring";
-		} else if ((month == 6 && day >= 16) || (month == 7 && day <= 31) || (month == 8 && day <= 31) || (month == 9 && day <= 15)) {
+		} else if (cal.after(summerStart) && cal.before(summerEnd)) {
 			season = "Summer";
-		} else if ((month == 9 && day >= 16) || (month == 10 && day <= 31) || (month == 11 && day <= 30) || (month == 12 && day <= 15)){
+		} else if (cal.after(fallStart) && cal.before(fallEnd)){
 			season = "Fall";
+		} else {
+			return "Invalid date";
 		}
 		return season;
 	}
