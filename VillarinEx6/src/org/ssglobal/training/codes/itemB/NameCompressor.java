@@ -7,7 +7,7 @@ public class NameCompressor {
 
 	public void compress() {
 		Scanner sc = new Scanner(System.in);
-
+	
 		while (true) {
 			String name = sc.nextLine();
 
